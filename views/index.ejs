@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/output.css" rel="stylesheet">
   <title>
     <%= title %>
   </title>
@@ -11,19 +12,23 @@
 
 <body>
 
-  <div>
-    <form action="/log-in" method="POST">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username">
 
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password">
+  <form action="/log-in" method="POST" class="place-self-center mt-10">
+    <fieldset class="fieldset w-xs bg-base-200 border border-base-300 p-4 rounded-box">
+      <legend class="fieldset-legend">Login</legend>
 
-      <button type="submit">
-        Log in
-      </button>
-    </form>
-  </div>
+      <label class="fieldset-label">Username</label>
+      <input type="text" class="input" placeholder="Username" name="username" />
+
+      <label class="fieldset-label">Password</label>
+      <input type="password" class="input" placeholder="Password" name="password" />
+
+      <a href="/sign-up" class="link link-primary">create an account</a>
+
+      <button class="btn btn-neutral mt-4" type="submit">Login</button>
+    </fieldset>
+  </form>
+
 
 </body>
 
