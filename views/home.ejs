@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/output.css" rel="stylesheet">
   <title>
     <%= title %>
   </title>
@@ -11,7 +12,62 @@
 
 <body>
 
-  <h1>HOME!</h1>
+  <div class="flex flex-col h-screen">
+    <%- include("partials/nav") %>
+
+      <div class="grow p-4">
+        <div class="dropdown dropdown-right">
+          <div tabindex="0" role="button" class="btn m-1">
+            <%- include("partials/add-icon") %>
+              <h1>New</h1>
+          </div>
+          <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+            <li>
+              <form action="/add-folder" method="POST">
+                <button type="submit">
+                  Folder
+                </button>
+              </form>
+
+            </li>
+            <li>
+              <form action="/add-file" method="POST">
+                <button>
+                  File
+                </button>
+              </form>
+            </li>
+          </ul>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="table">
+            <!-- head -->
+            <thead>
+              <tr>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- row 2 -->
+              <tr class="hover:bg-base-300">
+                <td>Hart Hagerty</td>
+                <td>
+                  <button class="cursor-pointer">
+                    <%- include("partials/more-icon") %>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <%- include("partials/footer") %>
+  </div>
+
+
 
 </body>
 
