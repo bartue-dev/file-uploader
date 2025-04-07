@@ -25,4 +25,41 @@ model User {
   id       Int     @id @default(autoincrement())
   username String? @db.VarChar(255)
   password String?
+
+  //scalar list
+  folder Folder[]
+  file   File[]
+}
+
+model Folder {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  //self relation
+  parentFolder   Folder? @relation("nestedFolder", fields: [parentFolderId], references: [id])
+  parentFolderId Int?
+
+  childFolder Folder[] @relation("nestedFolder")
+
+  //relation
+  author User? @relation(fields: [authorId], references: [id])
+
+  //foreign key
+  authorId Int?
+
+  file File[]
+}
+
+model File {
+  id Int @id @default(autoincrement())
+
+  //relation
+  author User?   @relation(fields: [authorId], references: [id])
+  post   Folder? @relation(fields: [postId], references: [id])
+
+  //foregin key
+  authorId Int?
+  postId   Int?
 }
