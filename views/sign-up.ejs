@@ -12,25 +12,7 @@
 
 <body>
 
-  <form action="/sign-up" method="POST" class="place-self-center mt-10">
-    <fieldset class="fieldset w-xs bg-base-200 border border-base-300 p-4 rounded-box">
-      <legend class="fieldset-legend">Sign up</legend>
-
-      <label class="fieldset-label">Username</label>
-      <input type="text" class="input" placeholder="username" name="username" required />
-
-      <label class="fieldset-label">Password</label>
-      <input type="password" class="input" placeholder="password" name="password" required />
-
-      <label class="fieldset-label">Confirm Password</label>
-      <input type="password" class="input" placeholder="confirm password" name="confirm-password" required />
-
-      <a href="/" class="link link-primary">Log in</a>
-
-      <button class="btn btn-neutral mt-4" type="submit">Sign up</button>
-    </fieldset>
-
-  </form>
+  <%- include("forms/signupForm") %>
 
 </body>
 
