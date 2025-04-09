@@ -1,0 +1,28 @@
+<!-- folders Table -->
+<div class="overflow-x-auto">
+  <table class="table">
+    <!-- head -->
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- row 2 -->
+      <% folders.forEach(folder=> { %>
+        <tr class="hover:bg-base-300 cursor-pointer" onclick="row( '<%-folder.id %>' )">
+          <td>
+            <%= folder.name %>
+          </td>
+          <td>
+            <button class="cursor-pointer">
+              <%- include("../partials/more-icon") %>
+            </button>
+          </td>
+        </tr>
+
+        <% }) %>
+    </tbody>
+  </table>
+</div>

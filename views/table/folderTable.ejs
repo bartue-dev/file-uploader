@@ -1,0 +1,34 @@
+<!-- folder Table -->
+<div class="overflow-x-auto mt-5">
+  <h1>
+    > <%= folder.name.toUpperCase() %>
+  </h1>
+  <table class="table">
+    <!-- head -->
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- row 2 -->
+      <% if (childFolder.length> 0) { %>
+        <% childFolder.childFolder.forEach(chilFol=> { %>
+          <tr class="hover:bg-base-300 cursor-pointer" onclick="row( '<%- chilFol.id %>')">
+            <td>
+              <%= chilFol.name %>
+            </td>
+            <td>
+              <button class="cursor-pointer">
+                <%- include("../partials/more-icon") %>
+              </button>
+            </td>
+          </tr>
+          <% }) %>
+            <% } %>
+
+
+    </tbody>
+  </table>
+</div>
