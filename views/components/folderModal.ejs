@@ -1,0 +1,17 @@
+<!-- Open the modal using ID.showModal() method -->
+<dialog id="my_modal_1" class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">Create Folder</h3>
+    <div class="modal-action">
+      <form action="/home/add-folder" method="POST" class="w-full">
+        <!-- if there is a button in form, it will close the modal -->
+        <input type="text" placeholder="folder name" name="folderName" class="input w-full" />
+
+        <div class="flex gap-2 mt-3">
+          <button type="submit" class="btn">Create</button>
+          <button class="btn" type="button" onclick="closeDialog()">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</dialog>
