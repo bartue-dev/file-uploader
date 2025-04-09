@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="/output.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
   <title>
     <%= title %>
   </title>
@@ -13,62 +14,53 @@
 <body>
 
   <div class="flex flex-col h-screen">
-    <%- include("partials/nav") %>
+    <!-- modal -->
+    <% if (folders.length> 0 && folder.length === 0) { %>
+      <%- include("components/folderModal") %>
+        <% } else { %>
+          <%- include("components/childFolderModal") %>
+            <% } %>
+              <%- include("components/fileModal") %>
+                <!-- navbar -->
+                <%- include("components/nav") %>
 
-      <div class="grow p-4">
-        <div class="dropdown dropdown-right">
-          <div tabindex="0" role="button" class="btn m-1">
-            <%- include("partials/add-icon") %>
-              <h1>New</h1>
-          </div>
-          <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-            <li>
-              <form action="/add-folder" method="POST">
-                <button type="submit">
-                  Folder
-                </button>
-              </form>
+                  <div class="grow p-4">
+                    <!-- new btn -->
+                    <%- include("components/newBtn") %>
 
-            </li>
-            <li>
-              <form action="/add-file" method="POST">
-                <button>
-                  File
-                </button>
-              </form>
-            </li>
-          </ul>
-        </div>
-
-        <div class="overflow-x-auto">
-          <table class="table">
-            <!-- head -->
-            <thead>
-              <tr>
-                <th></th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- row 2 -->
-              <tr class="hover:bg-base-300">
-                <td>Hart Hagerty</td>
-                <td>
-                  <button class="cursor-pointer">
-                    <%- include("partials/more-icon") %>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <%- include("partials/footer") %>
+                      <% if (folders.length> 0 && folder.length === 0) { %>
+                        <%- include("table/foldersTable") %>
+                          <% } else { %>
+                            <%- include("table/folderTable") %>
+                              <% } %>
+                  </div>
+                  <!-- footer -->
+                  <%- include("components/footer") %>
   </div>
 
 
 
+  <script>
+
+    const dialog = document.querySelector("#my_modal_1");
+    const dialogFile = document.querySelector("#my_modal_2");
+
+
+    function closeDialog() {
+      dialog.close();
+    }
+
+    function closeDialogFile() {
+      dialogFile.close();
+    }
+
+    function row(folderId) {
+      window.location.href = `/home/${folderId}/folder`
+
+      console.log("row clicked")
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </body>
 
 </html>
