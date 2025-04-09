@@ -9,6 +9,7 @@ const app = express();
 const passport = require("./authentication/passport");
 const indexRoute = require("./routes/indexRoute");
 const signupRoute = require("./routes/signupRoute"); 
+const homeRoute = require("./routes/homeRoute");
 
 
 //connect ejs
@@ -47,6 +48,12 @@ passport.passportLocalStrat;
 passport.passportSerializeUser;
 passport.passportDeserializeUser;
 
+
+app.use((req, res, next) => {
+  console.log("user: ", req.user);
+  console.log("session: ", req.session);
+  next();
+});
 //currentUser data avail to UI files
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
@@ -55,6 +62,7 @@ app.use((req, res, next) => {
 //routes
 app.use("/", indexRoute);
 app.use("/sign-up", signupRoute);
+app.use("/home", homeRoute);
 app.post("/log-in", passport.passportAuth);
 app.get("/log-out", (req, res, next) => {
 req.logout((error) => {
@@ -64,12 +72,6 @@ req.logout((error) => {
   });
 })
 
-
-app.get("/home", (req, res, next) => {
-  res.render("home", {
-    title: "Home"
-  })
-});
 
 
 //error middleware
