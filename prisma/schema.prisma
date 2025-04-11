@@ -53,13 +53,18 @@ model Folder {
 }
 
 model File {
-  id Int @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
+  name      String
+  url       String?
+  type      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   //relation
   author User?   @relation(fields: [authorId], references: [id])
-  post   Folder? @relation(fields: [postId], references: [id])
+  folder Folder? @relation(fields: [folderId], references: [id])
 
   //foregin key
   authorId Int?
-  postId   Int?
+  folderId Int?
 }
