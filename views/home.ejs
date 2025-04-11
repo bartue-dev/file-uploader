@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="/output.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
   <title>
     <%= title %>
   </title>
@@ -15,7 +14,7 @@
 
   <div class="flex flex-col h-screen">
     <!-- modal -->
-    <% if (folders.length> 0 && folder.length === 0) { %>
+    <% if (mainFolderAndFile && !folder) { %>
       <%- include("components/folderModal") %>
         <% } else { %>
           <%- include("components/childFolderModal") %>
@@ -28,10 +27,10 @@
                     <!-- new btn -->
                     <%- include("components/newBtn") %>
 
-                      <% if (folders.length> 0 && folder.length === 0) { %>
+                      <% if (mainFolderAndFile && !folder) { %>
                         <%- include("table/foldersTable") %>
                           <% } else { %>
-                            <%- include("table/folderTable") %>
+                            <%- include("table/childFolderTable") %>
                               <% } %>
                   </div>
                   <!-- footer -->
@@ -60,7 +59,6 @@
       console.log("row clicked")
     }
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </body>
 
 </html>
