@@ -15,13 +15,25 @@ class Folder {
     });
   }
 
-  async allFolder(userId) {
-    const folders = await prisma.folder.findMany({
+  async mainFolderAndFile(userId) {
+    const folders = await prisma.user.findMany({
       where: {
-        AND: [
-        { authorId: userId },
-        { parentFolderId: null }          
-        ]
+        id: userId
+      }, 
+      include: {
+        folder: {
+          where: {
+            AND: [
+              { authorId: userId },
+              { parentFolderId: null }          
+              ]
+          }
+        },
+        file: {
+          where: {
+            folderId: null
+          }
+        }
       }
     });
     return folders;
@@ -31,6 +43,10 @@ class Folder {
     const folder = await prisma.folder.findUnique({
       where: {
         id: id
+      },
+      include: {
+        childFolder: true,
+        file: true
       }
     });
 
@@ -46,22 +62,20 @@ class Folder {
       }
     });
   }
+}
 
-  async childFolder(Id) {
-    const childFolder = await prisma.folder.findUnique({
-      where: {id: Id},
-      include: {
-        childFolder: true
-      }
+class File {
+  async addFile(fileData) {
+    await prisma.file.create({
+      data: fileData
     });
-
-    return childFolder;
   }
-
 }
 
 const folderMethod = new Folder();
+const fileMethod = new File();
 
 module.exports = {
-  folderMethod
+  folderMethod,
+  fileMethod
 }
