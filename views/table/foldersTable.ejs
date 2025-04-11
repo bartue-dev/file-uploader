@@ -10,10 +10,11 @@
     </thead>
     <tbody>
       <!-- row 2 -->
-      <% folders.forEach(folder=> { %>
-        <tr class="hover:bg-base-300 cursor-pointer" onclick="row( '<%-folder.id %>' )">
-          <td>
-            <%= folder.name %>
+      <% mainFolderAndFile.folder.forEach(fold=> { %>
+        <tr class="hover:bg-base-300 cursor-pointer" onclick="row( '<%-fold.id %>' )">
+          <td class="flex items-center gap-2">
+            <%- include("../partials/folder-icon") %>
+              <%= fold.name %>
           </td>
           <td>
             <button class="cursor-pointer">
@@ -23,6 +24,21 @@
         </tr>
 
         <% }) %>
+
+          <% mainFolderAndFile.file.forEach(_file=> { %>
+            <tr class="hover:bg-base-300">
+              <td class="flex items-center gap-2">
+                <%- include("../partials/file-icon") %>
+                  <%= _file.name %>
+              </td>
+              <td>
+                <button class="cursor-pointer">
+                  <%- include("../partials/more-icon") %>
+                </button>
+              </td>
+            </tr>
+
+            <% }) %>
     </tbody>
   </table>
 </div>
