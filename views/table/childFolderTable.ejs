@@ -1,0 +1,49 @@
+<!-- folder Table -->
+<div class="overflow-x-auto mt-5">
+  <h1>
+    > <%= folder.name.toUpperCase() %>
+  </h1>
+  <table class="table">
+    <!-- head -->
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- row 2 -->
+      <% if (folder) { %>
+        <% folder.childFolder.forEach(folder=> { %>
+          <tr class="hover:bg-base-300 cursor-pointer" onclick="row( '<%- folder.id %>')">
+            <td class="flex items-center gap-2">
+              <%- include("../partials/folder-icon") %>
+                <%= folder.name %>
+            </td>
+            <td>
+              <button class="cursor-pointer">
+                <%- include("../partials/more-icon") %>
+              </button>
+            </td>
+          </tr>
+          <% }) %>
+
+            <% folder.file.forEach(file=> { %>
+              <tr class="hover:bg-base-300 cursor-pointer">
+                <td class="flex items-center gap-2">
+                  <%- include("../partials/file-icon") %>
+                    <%= file.name %>
+                </td>
+                <td>
+                  <button class="cursor-pointer">
+                    <%- include("../partials/more-icon") %>
+                  </button>
+                </td>
+              </tr>
+              <% }) %>
+                <% } %>
+
+
+    </tbody>
+  </table>
+</div>
