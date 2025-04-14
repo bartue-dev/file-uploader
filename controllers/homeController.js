@@ -16,7 +16,7 @@ exports.getHome = asyncHandler(async (req, res, next) => {
   }
 
   console.log("FOLDER:", folder)
-  // console.log("FOLDERS&FILES:", mainFolderAndFile[0].file);
+  console.log("FOLDERS&FILES:", mainFolderAndFile[0].file);
   
 
   res.render("home", {
@@ -67,13 +67,13 @@ exports.postFileInFolder = asyncHandler(async (req, res, next) => {
     contentType: mimetype
   });
 
-  // if (error) {
-  //   console.error("Supabase upload error:", error);
-  //   return res.status(500).json({
-  //     message: "Failed to upload file to Supabase",
-  //     error: error
-  //   });
-  // }
+  if (error) {
+    console.error("Supabase upload error:", error);
+    return res.status(500).json({
+      message: "Failed to upload file to Supabase",
+      error: error
+    });
+  }
 
   // console.log("Upload successful:", data);
 
@@ -115,15 +115,15 @@ exports.postFile = asyncHandler(async (req, res, next) => {
     contentType: mimetype
   });
 
-  // if (error) {
-  //   console.error("Supabase upload error:", error);
-  //   return res.status(500).json({
-  //     message: "Failed to upload file to Supabase",
-  //     error: error
-  //   });
-  // }
+  if (error) {
+    console.error("Supabase upload error:", error);
+    return res.status(500).json({
+      message: "Failed to upload file to Supabase",
+      error: error
+    });
+  }
 
-  // console.log("Upload successful:", data);
+  console.log("Upload successful:", data);
 
 
   const { data: urlData } = supabase.storage
@@ -143,4 +143,36 @@ exports.postFile = asyncHandler(async (req, res, next) => {
   // console.log("File url", publicUrl)
 
   res.redirect("/home");
+});
+
+exports.deleteFile = asyncHandler(async (req, res, next) => {
+  const fileId = req.params.id
+
+  const file = await db.fileMethod.getFileById(Number(fileId));
+
+  
+  const url = file.url.split("/public/files/");
+  
+  const filePath = url[1].replace(/%20/g, " ");;
+
+  // const editFile = filePath.replace(/%/g, " ");
+
+  console.log("File", filePath);
+
+  const { error: deleteError } = await supabase.storage
+    .from("files")
+    .remove([filePath]);
+
+    if (deleteError) {
+      console.error("Error deleting file from storage:", deleteError);
+      return res.status(500).json({ 
+        message: "Failed to delete file from storage",
+        error: deleteError
+      });
+    }
+
+  await db.fileMethod.deleteFile(Number(fileId));
+
+  res.redirect("/home")
+
 });
