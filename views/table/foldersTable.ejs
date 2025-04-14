@@ -1,5 +1,5 @@
 <!-- folders Table -->
-<div class="overflow-x-auto">
+<div class="overflow-x-auto pb-5">
   <table class="table">
     <!-- head -->
     <thead>
@@ -11,14 +11,14 @@
     <tbody>
       <!-- row 2 -->
       <% mainFolderAndFile.folder.forEach(fold=> { %>
-        <tr class="hover:bg-base-300 cursor-pointer" onclick="row( '<%-fold.id %>' )">
-          <td class="flex items-center gap-2">
+        <tr class="hover:bg-base-300">
+          <td class="flex items-center gap-2 cursor-pointer" onclick="row( '<%-fold.id %>' )">
             <%- include("../partials/folder-icon") %>
               <%= fold.name %>
           </td>
           <td>
             <button class="cursor-pointer">
-              <%- include("../partials/more-icon") %>
+              <%- include("../partials/more-icon-folder") %>
             </button>
           </td>
         </tr>
@@ -33,7 +33,7 @@
               </td>
               <td>
                 <button class="cursor-pointer">
-                  <%- include("../partials/more-icon") %>
+                  <%- include("../partials/more-icon-file", {fileId: _file.id}) %>
                 </button>
               </td>
             </tr>
