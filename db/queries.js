@@ -70,6 +70,24 @@ class File {
       data: fileData
     });
   }
+
+  async getFileById(fileId) {
+    const result = await prisma.file.findUnique({
+      where: {
+        id: fileId
+      },
+    });
+
+    return result;
+  }
+
+  async deleteFile(fileId) {
+    await prisma.file.delete({
+      where: {
+        id: fileId
+      }
+    });
+  }
 }
 
 const folderMethod = new Folder();
