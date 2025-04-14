@@ -58,6 +58,35 @@
 
       console.log("row clicked")
     }
+
+    /* delete specific file  */
+    const delFileBtn = document.querySelectorAll(".del-file-btn");
+
+    delFileBtn.forEach((btn, index) => {
+      btn.addEventListener("click", async (e) => {
+
+        e.preventDefault();
+
+        const fileId = btn.getAttribute("data-file-id");
+
+        console.log(fileId);
+
+        try {
+          const result = await fetch(`/home/${fileId}/delete-file`, {
+            method: "POST"
+          });
+
+          window.location.reload();
+
+        } catch (error) {
+          console.error(error)
+        }
+
+
+      });
+    });
+    /* --- */
+
   </script>
 </body>
 
