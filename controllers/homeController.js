@@ -1,8 +1,10 @@
 const asyncHandler = require("express-async-handler");
+const db = require("../db/queries");
 const { supabase } = require("../storage/supabase");
 const { decode } = require("base64-arraybuffer");
 const { deleteHelper } = require("./helper");
-const db = require("../db/queries");
+const { validationResult } = require("express-validator");
+const { validateCreateFile, validateCreateFolder } = require("../validator/express-validator")
 
 //render home page along with the datas
 exports.getHome = asyncHandler(async (req, res, next) => {
@@ -28,29 +30,52 @@ exports.getHome = asyncHandler(async (req, res, next) => {
 });
 
 //create folder
-exports.postCreateFolder = asyncHandler(async (req, res, next) => {
+exports.postCreateFolder = [validateCreateFolder ,asyncHandler(async (req, res, next) => {
+
+  const errors = validationResult(req);
   const { folderName } = req.body;
   const userId = req.user.id;
+
+  if (!errors.isEmpty()) {
+    return res.render("validationPage", {
+      errors: errors.array()
+    });
+  }
 
   await db.folderMethod.addFolder(userId, folderName);
 
   res.redirect("/home");
 
-});
+})];
 
 //create child folder
-exports.postChildFolder = asyncHandler(async (req, res, next) => {
+exports.postChildFolder = [validateCreateFolder ,asyncHandler(async (req, res, next) => {
+  const errors = validationResult(req);
   const { id } = req.params;
   const { folderName } = req.body
   const userId = req.user.id;
 
+  if (!errors.isEmpty()) {
+    return res.render("validationPage", {
+      errors: errors.array()
+    });
+  }
+
   await db.folderMethod.addChildFolder(Number(id), folderName, userId);
 
   res.redirect(`/home/${id}/folder`)
-});
+})];
 
-//create file
-exports.postFileInFolder = asyncHandler(async (req, res, next) => {
+//create file in a folder
+exports.postFileInFolder = [validateCreateFile, asyncHandler(async (req, res, next) => {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.render("validationPage", {
+      errors: errors.array()
+    })
+  }
+
   const {originalname, buffer, mimetype} = req.file;
   const userId = req.user.id;
   const folderId = Number(req.params.id); 
@@ -76,8 +101,6 @@ exports.postFileInFolder = asyncHandler(async (req, res, next) => {
     });
   }
 
-  // console.log("Upload successful:", data);
-
   const result = supabase.storage
     .from("files")
     .getPublicUrl(filePath)
@@ -92,16 +115,21 @@ exports.postFileInFolder = asyncHandler(async (req, res, next) => {
     type: mimetype 
   });
 
-
-  // console.log("File url", publicUrl)
-
   res.redirect(`/home/${folderId}/folder`);
-});
+})];
 
 //upload file without a folder
-exports.postFile = asyncHandler(async (req, res, next) => {
-  const { originalname, buffer, mimetype} = req.file;
+exports.postFile = [validateCreateFile, asyncHandler(async (req, res, next) => {
+  const errors = validationResult(req);
   const userId = req.user.id;
+  
+  if (!errors.isEmpty()) {
+    return res.render("validationPage", {
+      errors: errors.array()
+    });
+  }
+  
+const { originalname, buffer, mimetype} = req.file;
 
  if (!req.file) {
     res.status(400).json({message: "Please upload file"})
@@ -144,7 +172,7 @@ exports.postFile = asyncHandler(async (req, res, next) => {
   // console.log("File url", publicUrl)
 
   res.redirect("/home");
-});
+})];
 
 //delete file
 exports.deleteFile = asyncHandler(async (req, res, next) => {
