@@ -30,6 +30,9 @@ homeRoute.post("/upload-file", upload.single("file"), homeController.postFile);
 //delete file
 homeRoute.post("/:id/delete-file", homeController.deleteFile);
 
+//delete folder
+homeRoute.post("/:id/delete-folder", homeController.deleteFolder);
+
 
 module.exports = homeRoute;
 
