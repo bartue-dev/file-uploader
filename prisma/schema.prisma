@@ -38,7 +38,7 @@ model Folder {
   updatedAt DateTime @updatedAt
 
   //self relation
-  parentFolder   Folder? @relation("nestedFolder", fields: [parentFolderId], references: [id])
+  parentFolder   Folder? @relation("nestedFolder", fields: [parentFolderId], references: [id], onDelete: Cascade)
   parentFolderId Int?
 
   childFolder Folder[] @relation("nestedFolder")
@@ -62,7 +62,7 @@ model File {
 
   //relation
   author User?   @relation(fields: [authorId], references: [id])
-  folder Folder? @relation(fields: [folderId], references: [id])
+  folder Folder? @relation(fields: [folderId], references: [id], onDelete: Cascade)
 
   //foregin key
   authorId Int?
