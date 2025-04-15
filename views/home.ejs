@@ -76,7 +76,7 @@
             method: "POST"
           });
 
-          window.location.reload();
+          location.reload();
 
         } catch (error) {
           console.error(error)
@@ -87,6 +87,34 @@
     });
     /* --- */
 
+    /* del specific folder along with its subfolder and files */
+    const delFolderBtn = document.querySelectorAll(".del-folder-btn");
+
+    delFolderBtn.forEach(btn => {
+      btn.addEventListener("click", async (e) => {
+
+        e.preventDefault();
+
+        const folderId = btn.getAttribute("data-folder-id");
+
+        console.log("Folder id:", folderId);
+
+        try {
+          const result = await fetch(`/home/${folderId}/delete-folder`, {
+            method: "POST"
+          });
+
+          location.reload();
+
+        } catch (error) {
+          console.error(error)
+        }
+
+      });
+    });
+
+
+    /*  */
   </script>
 </body>
 
