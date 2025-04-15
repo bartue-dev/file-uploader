@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const { supabase } = require("../storage/supabase");
 const { decode } = require("base64-arraybuffer");
+const { deleteHelper } = require("./helper");
 const db = require("../db/queries");
 
 //render home page along with the datas
@@ -15,8 +16,8 @@ exports.getHome = asyncHandler(async (req, res, next) => {
     folder = await db.folderMethod.toFolderPage(Number(paramsId));
   }
 
-  console.log("FOLDER:", folder)
-  console.log("FOLDERS&FILES:", mainFolderAndFile[0].file);
+  // console.log("FOLDER:", folder)
+  // console.log("FOLDERS&FILES:", mainFolderAndFile[0].file);
   
 
   res.render("home", {
@@ -77,11 +78,11 @@ exports.postFileInFolder = asyncHandler(async (req, res, next) => {
 
   // console.log("Upload successful:", data);
 
-  const { data: urlData } = supabase.storage
+  const result = supabase.storage
     .from("files")
     .getPublicUrl(filePath)
 
-  const publicUrl = urlData.publicUrl;
+  const publicUrl = result.data.publicUrl;
 
   await db.fileMethod.addFile({
     authorId: userId,
@@ -123,7 +124,7 @@ exports.postFile = asyncHandler(async (req, res, next) => {
     });
   }
 
-  console.log("Upload successful:", data);
+  // console.log("Upload successful:", data);
 
 
   const { data: urlData } = supabase.storage
@@ -145,6 +146,7 @@ exports.postFile = asyncHandler(async (req, res, next) => {
   res.redirect("/home");
 });
 
+//delete file
 exports.deleteFile = asyncHandler(async (req, res, next) => {
   const fileId = req.params.id
 
@@ -154,10 +156,6 @@ exports.deleteFile = asyncHandler(async (req, res, next) => {
   const url = file.url.split("/public/files/");
   
   const filePath = url[1].replace(/%20/g, " ");;
-
-  // const editFile = filePath.replace(/%/g, " ");
-
-  console.log("File", filePath);
 
   const { error: deleteError } = await supabase.storage
     .from("files")
@@ -176,3 +174,15 @@ exports.deleteFile = asyncHandler(async (req, res, next) => {
   res.redirect("/home")
 
 });
+
+//delete folder
+exports.deleteFolder = asyncHandler(async (req, res, next) => {
+  const folderId = req.params.id;
+  
+  deleteHelper(Number(folderId));
+
+  res.redirect("/home")
+
+});
+
+
