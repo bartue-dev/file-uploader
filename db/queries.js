@@ -62,6 +62,25 @@ class Folder {
       }
     });
   }
+
+  async getChildFolder(id) {
+    const result = await prisma.folder.findMany({
+      where: {
+        parentFolderId: id
+      }
+    });
+
+    return result;
+  }
+
+  async deleteFolder(id) {
+    await prisma.folder.delete({
+      where: {
+        id: id
+      }
+    });
+  }
+
 }
 
 class File {
@@ -81,12 +100,30 @@ class File {
     return result;
   }
 
+  async getFileByFolderId(folderId) {
+    const result = await prisma.file.findMany({
+      where: {
+        folderId: folderId
+      }
+    });
+
+    return result;
+  }
+
   async deleteFile(fileId) {
     await prisma.file.delete({
       where: {
         id: fileId
       }
     });
+  }
+
+  async deleteFileByFolder(folderId) {
+    await prisma.file.deleteMany({
+      where: {
+        folderId: folderId
+      }
+    })
   }
 }
 
