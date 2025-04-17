@@ -38,7 +38,6 @@ async function deleteHelper(folderId) {
     }
 
 
-
   } catch (error) {
     console.error(error)
   }
