@@ -4,9 +4,9 @@
     <h3 class="text-lg font-bold">Create File</h3>
     <div class="modal-action">
       <% if (mainFolderAndFile && !folder) { %>
-        <form action="/home/upload-file" method="POST" enctype="multipart/form-data" class="w-full">
+        <form action="/drive/upload-file" method="POST" enctype="multipart/form-data" class="w-full">
           <% } else { %>
-            <form action="/home/<%= folder.id %>/upload-file" method="POST" class="w-full"
+            <form action="/drive/<%= folder.id %>/upload-file" method="POST" class="w-full"
               enctype="multipart/form-data">
               <% } %>
                 <!-- if there is a button in form, it will close the modal -->
