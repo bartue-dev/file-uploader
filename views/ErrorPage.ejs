@@ -19,7 +19,7 @@
         </p>
         <% }) %>
           <% } %>
-            <% if (cloudErr) { %>
+            <% if (Object.keys(cloudErr).length> 0) { %>
               <p class="text-base">
                 - <%= cloudErr.message %>
               </p>
