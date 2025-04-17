@@ -9,7 +9,9 @@ const app = express();
 const passport = require("./authentication/passport");
 const indexRoute = require("./routes/indexRoute");
 const signupRoute = require("./routes/signupRoute"); 
-const homeRoute = require("./routes/homeRoute");
+const loginRoute = require("./routes/loginRoute");
+const driveRoute = require("./routes/driveRoute");
+const faqRoute = require("./routes/faqRoute");
 
 
 //connect ejs
@@ -62,7 +64,9 @@ app.use((req, res, next) => {
 //routes
 app.use("/", indexRoute);
 app.use("/sign-up", signupRoute);
-app.use("/home", homeRoute);
+app.use("/log-in", loginRoute);
+app.use("/drive", driveRoute);
+app.use("/faq", faqRoute);
 app.post("/log-in", passport.passportAuth);
 app.get("/log-out", (req, res, next) => {
 req.logout((error) => {
