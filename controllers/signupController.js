@@ -31,6 +31,6 @@ exports.postSignup = [ validateSignUp, asyncHandler(async (req, res, next) => {
     }
   });
 
-  res.redirect("/");
+  res.redirect("/log-in");
 
 })];
