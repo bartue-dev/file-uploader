@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:css": "npx @tailwindcss/cli -i ./public/input.css -o ./public/output.css --watch"
+    "build:css": "npx @tailwindcss/cli -i ./public/input.css -o ./public/output.css --watch",
+    "dev": "npm install && npx prisma migrate dev --name init",
+    "//": "dev script is run for deployment only"
   },
   "keywords": [],
   "author": "",
