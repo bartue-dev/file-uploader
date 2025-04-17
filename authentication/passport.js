@@ -16,13 +16,13 @@ const localStratCb = async (req, username, password, done) => {
     req.session.messages = [];
 
     if (!user){
-      return done(null, false, {message: "Incorrect username"});
+      return done(null, false, {message: "Incorrect username or password"});
     }
 
     const match = await bcrypt.compare(password, user.password);
 
     if (!match) {
-      return done(null, false, {message: "Incorrect Password"});
+      return done(null, false, {message: "Incorrect username or password"});
     }
 
     return done(null, user);
@@ -56,8 +56,8 @@ const passportSerializeUser = passport.serializeUser((user, done) => {
 const passportDeserializeUser = passport.deserializeUser(deserializeUserCb);
 
 const passportAuth = passport.authenticate("local", {
-  successRedirect: "/home",
-  failureRedirect: "/",
+  successRedirect: "/drive",
+  failureRedirect: "/log-in",
   failureMessage: true
 });
 
