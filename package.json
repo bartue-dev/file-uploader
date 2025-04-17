@@ -6,6 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:css": "npx @tailwindcss/cli -i ./public/input.css -o ./public/output.css --watch",
     "dev": "npm install && npx prisma migrate dev --name init",
+    "start": "node app.js --watch",
     "//": "dev script is run for deployment only"
   },
   "keywords": [],
