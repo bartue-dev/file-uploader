@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/output.css">
+  <title>
+    <%= title %>
+  </title>
+</head>
+
+<body>
+
+  <div class="flex flex-col h-screen justify-between">
+
+    <%- include("components/nav", {title: title}) %>
+
+      <div class="flex flex-col justify-center items-center flex-grow p-4">
+        <div
+          class="relative w-full bg-white px-6 pt-10 pb-8 mt-8 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-2xl sm:rounded-lg sm:px-10">
+          <div class="mx-auto px-5">
+            <div class="flex flex-col items-center">
+              <h2 class="mt-5 text-center text-3xl font-bold tracking-tight md:text-5xl">FAQ</h2>
+              <p class="mt-3 text-lg text-neutral-500 md:text-xl">Frequenty asked questions
+
+              </p>
+            </div>
+            <div class="mx-auto mt-8 grid max-w-xl divide-y divide-neutral-200">
+              <div class="py-5">
+                <details class="group">
+                  <summary class="flex cursor-pointer list-none items-center justify-between font-medium">
+                    <span> What is My-Drive?</span>
+                    <span class="transition group-open:rotate-180">
+                      <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor"
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"
+                        width="24">
+                        <path d="M6 9l6 6 6-6"></path>
+                      </svg>
+                    </span>
+                  </summary>
+                  <p class="group-open:animate-fadeIn mt-3 text-neutral-600">
+                    My-Drive is file storage. You can store any files. You can download and share your files with your
+                    friends.
+                  </p>
+                </details>
+              </div>
+              <div class="py-5">
+                <details class="group">
+                  <summary class="flex cursor-pointer list-none items-center justify-between font-medium">
+                    <span> How to use My-Drive? </span>
+                    <span class="transition group-open:rotate-180">
+                      <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor"
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"
+                        width="24">
+                        <path d="M6 9l6 6 6-6"></path>
+                      </svg>
+                    </span>
+                  </summary>
+                  <p class="group-open:animate-fadeIn mt-3 text-neutral-600">
+                    My-Drive is very easy to use. Click the new button to create or upload a file. You can create a
+                    folder inside a folder then upload a file inside that folder. To share you file to your friends
+                    click the three (3) dots inside the table an options will appear, then click share. To download a
+                    file, click the three (3) dots inside the table an options will appear, then click download. To
+                    delete a folder or file, click three (3) dots inside the table an options will appear, then click
+                    delete to delete a folder or a file.
+                  </p>
+                </details>
+              </div>
+              <div class="py-5">
+                <details class="group">
+                  <summary class="flex cursor-pointer list-none items-center justify-between font-medium">
+                    <span> Where do my files stores? </span>
+                    <span class="transition group-open:rotate-180">
+                      <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor"
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"
+                        width="24">
+                        <path d="M6 9l6 6 6-6"></path>
+                      </svg>
+                    </span>
+                  </summary>
+                  <p class="group-open:animate-fadeIn mt-3 text-neutral-600">
+                    It stores in a cloud storage. Supabase.
+                  </p>
+                </details>
+              </div>
+              <div class="py-5">
+                <details class="group">
+                  <summary class="flex cursor-pointer list-none items-center justify-between font-medium">
+                    <span> Why My-Drive is slow </span>
+                    <span class="transition group-open:rotate-180">
+                      <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor"
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"
+                        width="24">
+                        <path d="M6 9l6 6 6-6"></path>
+                      </svg>
+                    </span>
+                  </summary>
+                  <p class="group-open:animate-fadeIn mt-3 text-neutral-600">
+                    Well. My-Drive is host by render. Uses the free hosting by render.
+                  </p>
+                </details>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%- include("components/footer") %>
+  </div>
+
+</body>
+
+</html>
