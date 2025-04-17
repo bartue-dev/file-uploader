@@ -28,7 +28,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    maxAge: 24 * 60 * 60 * 1000
+    maxAge: 365 * 24 * 60 * 60 * 1000 //expires with in a year
   },
   store: new PrismaSessionStore(
     prisma,
