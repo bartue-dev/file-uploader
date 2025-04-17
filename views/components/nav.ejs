@@ -1,32 +1,75 @@
-<div class="drawer">
-  <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
-  <div class="drawer-content flex flex-col">
-    <!-- Navbar -->
-    <div class="navbar bg-base-300 w-full">
-      <div class="flex-none lg:hidden">
-        <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-square btn-ghost">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-            class="inline-block h-6 w-6 stroke-current">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </label>
+<!-- <div class="navbar bg-base-100 shadow-sm px-4">
+  <div class="flex-1 flex justify-start">
+    <a class="btn-ghost text-xl">
+      <div class="avatar flex justify-center items-center gap-3">
+        <div class="w-12 rounded-xl">
+          <img src="/file-uploader-logo.png" alt="">
+        </div>
+        <% if (currentUser) { %>
+          <h1 class="flex flex-col text-base font-semibold">
+            <span>Welcome,</span>
+            <%= currentUser.username %>
+          </h1>
+          <% } %>
       </div>
-      <div class="mx-2 flex-1 px-2">Navbar Title</div>
-      <div class="hidden flex-none lg:block">
-        <ul class="menu menu-horizontal">
-          <!-- Navbar menu content here -->
-          <li><a href="/home">Home</a></li>
-          <li><a href="/log-out">Log out</a></li>
-        </ul>
-      </div>
-    </div>
+    </a>
   </div>
-  <div class="drawer-side">
-    <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>
-    <ul class="menu bg-base-200 min-h-full w-80 p-4">
-      <!-- Sidebar content here -->
-      <li><a>Sidebar Item 1</a></li>
-      <li><a>Sidebar Item 2</a></li>
+  <div class="flex-none">
+    <ul class="menu menu-horizontal px-1">
+      <li><a href="/" class="<%= title === 'My-drive' ? 'underline underline-offset-4' : 'no-underline'  %>">Home</a>
+      </li>
+      <% if (currentUser) { %>
+        <li><a href="/drive"
+            class="<%= title === 'Drive' ? 'underline underline-offset-4' : 'no-underline'  %>">Drive</a></li>
+        <% } %>
+          <li><a href="/faq" class="<%= title === 'FAQ' ? 'underline underline-offset-4' : 'no-underline'  %>">Faq</a>
+          </li>
+          <% if (currentUser) { %>
+            <li><a href="/log-out">log-out</a></li>
+            <% } %>
     </ul>
+  </div>
+</div> -->
+
+<div class="navbar bg-base-200">
+  <div class="ps-4">
+    <a class="text-lg font-bold">
+      <div class="avatar flex justify-center items-center gap-3">
+        <div class="w-10 rounded-xl">
+          <img src="/file-uploader-logo.png" alt="">
+        </div>
+        <% if (currentUser) { %>
+          <h1 class="flex flex-col text-sm font-semibold">
+            <span>Welcome,</span>
+            <%= currentUser.username %>
+          </h1>
+          <% } %>
+      </div>
+    </a>
+  </div>
+  <div class="flex grow justify-end px-2">
+    <div class="flex items-stretch">
+      <a class="btn btn-ghost rounded-field <%= title === 'My-drive' ? 'underline underline-offset-4' : 'no-underline'  %>"
+        href="/">Home</a>
+      <% if (currentUser) { %>
+        <a class="btn btn-ghost rounded-field <%= title === 'Drive' ? 'underline underline-offset-4' : 'no-underline'  %>"
+          href="/drive">Drive</a>
+        <% } %>
+          <a class="btn btn-ghost rounded-field <%= title === 'FAQ' ? 'underline underline-offset-4' : 'no-underline'  %>"
+            href="/faq">Faq</a>
+          <% if (currentUser) { %>
+            <div class="dropdown dropdown-end">
+              <div tabindex="0" role="button" class="btn btn-ghost rounded-field">
+                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"
+                  fill="#434343">
+                  <path d="M522-480 333-669l51-51 240 240-240 240-51-51 189-189Z" />
+                </svg>
+              </div>
+              <ul tabindex="0" class="menu dropdown-content bg-base-200 rounded-box z-1 mt-4 w-52 p-2 shadow-sm">
+                <li><a href="/log-out">Log-out</a></li>
+              </ul>
+            </div>
+            <% } %>
+    </div>
   </div>
 </div>
