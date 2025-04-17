@@ -25,7 +25,7 @@ exports.getDrive = asyncHandler(async (req, res, next) => {
   res.render("drive", {
     title: "Drive",
     mainFolderAndFile: mainFolderAndFile[0] || [],
-    folder: folder,
+    folder: folder
   });
 });
 
@@ -38,7 +38,8 @@ exports.postCreateFolder = [validateCreateFolder ,asyncHandler(async (req, res, 
 
   if (!errors.isEmpty()) {
     return res.render("ErrorPage", {
-      errors: errors.array()
+      errors: errors.array(),
+      cloudErr: {}
     });
   }
 
@@ -57,7 +58,8 @@ exports.postChildFolder = [validateCreateFolder ,asyncHandler(async (req, res, n
 
   if (!errors.isEmpty()) {
     return res.render("ErrorPage", {
-      errors: errors.array()
+      errors: errors.array(),
+      cloudErr: {}
     });
   }
 
@@ -72,7 +74,8 @@ exports.postFileInFolder = [validateCreateFile, asyncHandler(async (req, res, ne
 
   if (!errors.isEmpty()) {
     return res.render("ErrorPage", {
-      errors: errors.array()
+      errors: errors.array(),
+      cloudErr: {}
     })
   }
 
@@ -125,7 +128,8 @@ exports.postFile = [validateCreateFile, asyncHandler(async (req, res, next) => {
   
   if (!errors.isEmpty()) {
     return res.render("ErrorPage", {
-      errors: errors.array()
+      errors: errors.array(),
+      cloudErr: {}
     });
   }
   
@@ -194,10 +198,10 @@ exports.deleteFile = asyncHandler(async (req, res, next) => {
 
     if (deleteError) {
       console.error("Error deleting file from storage:", deleteError);
-      return res.status(500).json({ 
-        message: "Failed to delete file from storage",
-        error: deleteError
-      });
+      return res.render("ErrorPage", {
+        cloudErr: deleteError,
+        errors: [],
+      })
     }
 
   await db.fileMethod.deleteFile(Number(fileId));
