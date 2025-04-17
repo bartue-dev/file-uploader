@@ -1,5 +1,5 @@
 <!-- folders Table -->
-<div class="overflow-x-auto pb-5">
+<div class="overflow-x-auto pb-5 h-full">
   <table class="table">
     <!-- head -->
     <thead>
@@ -33,12 +33,20 @@
               </td>
               <td>
                 <button class="cursor-pointer">
-                  <%- include("../partials/more-icon-file", {fileId: _file.id}) %>
+                  <%- include("../partials/more-icon-file", {fileId: _file.id, url: _file.url, name: _file.name}) %>
                 </button>
               </td>
             </tr>
 
             <% }) %>
+
+              <% if (mainFolderAndFile.folder.length <=0 && mainFolderAndFile.file.length <=0) { %>
+                <tr>
+                  <td class="italic">
+                    Empty table
+                  </td>
+                </tr>
+                <% } %>
     </tbody>
   </table>
 </div>

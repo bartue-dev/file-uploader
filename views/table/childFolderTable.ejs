@@ -1,5 +1,5 @@
 <!-- folder Table -->
-<div class="overflow-x-auto mt-5 pb-5">
+<div class="overflow-x-auto mt-5 pb-5 h-full">
   <h1 class="pl-3">
     - <%= folder.name %> -
   </h1>
@@ -13,34 +13,40 @@
     </thead>
     <tbody>
       <!-- row 2 -->
-      <% if (folder) { %>
-        <% folder.childFolder.forEach((folder, index)=> { %>
-          <tr class="hover:bg-base-300">
-            <td class="flex items-center gap-2 cursor-pointer" onclick="row( '<%- folder.id %>')">
-              <%- include("../partials/folder-icon") %>
-                <%= folder.name %>
-            </td>
-            <td>
-              <button class="cursor-pointer">
-                <%- include("../partials/more-icon-folder", {folderId: folder.id}) %>
-              </button>
-            </td>
-          </tr>
-          <% }) %>
+      <% folder.childFolder.forEach((folder, index)=> { %>
+        <tr class="hover:bg-base-300">
+          <td class="flex items-center gap-2 cursor-pointer" onclick="row( '<%- folder.id %>')">
+            <%- include("../partials/folder-icon") %>
+              <%= folder.name %>
+          </td>
+          <td>
+            <button class="cursor-pointer">
+              <%- include("../partials/more-icon-folder", {folderId: folder.id}) %>
+            </button>
+          </td>
+        </tr>
+        <% }) %>
 
-            <% folder.file.forEach(file=> { %>
-              <tr class="hover:bg-base-300 cursor-pointer">
-                <td class="flex items-center gap-2">
-                  <%- include("../partials/file-icon") %>
-                    <%= file.name %>
-                </td>
-                <td>
-                  <button class="cursor-pointer">
-                    <%- include("../partials/more-icon-file", {fileId: file.id}) %>
-                  </button>
-                </td>
-              </tr>
-              <% }) %>
+          <% folder.file.forEach(file=> { %>
+            <tr class="hover:bg-base-300 cursor-pointer">
+              <td class="flex items-center gap-2">
+                <%- include("../partials/file-icon") %>
+                  <%= file.name %>
+              </td>
+              <td>
+                <button class="cursor-pointer">
+                  <%- include("../partials/more-icon-file", {fileId: file.id, url: file.url, name: file.name}) %>
+                </button>
+              </td>
+            </tr>
+            <% }) %>
+
+              <% if (folder.childFolder.length <=0 && folder.file.length <=0) { %>
+                <tr>
+                  <td class="italic">
+                    Empty table
+                  </td>
+                </tr>
                 <% } %>
 
 
