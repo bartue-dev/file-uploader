@@ -1,4 +1,4 @@
-<div class="dropdown dropdown-right dropdown-center">
+<div class="dropdown dropdown-left">
   <div tabindex="0" role="button">
     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#434343">
       <path
@@ -7,11 +7,12 @@
   </div>
   <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
     <li>
-      <a class="del-file-btn" data-file-id="<%= fileId %>">
+      <a id="del-file-btn" data-file-id="<%= fileId %>">
         Delete
       </a>
     </li>
-    <li><a>Copy url</a></li>
-    <li><a>Download</a></li>
+    <li><a data-url="<%= url %>" id="copy-btn">Copy url</a></li>
+    <li><a href="<%= url %>" download="<%= name %>">Download</a>
+    </li>
   </ul>
 </div>
