@@ -16,14 +16,8 @@
 
 ## 🚀 Built With
 
-<div align="center">
-
-![Express](https://img.shields.io/badge/EXPRESS-000000?style=for-the-badge&logo=express&logoColor=white)
-![Prisma](https://img.shields.io/badge/PRISMA-2D3748?style=for-the-badge&logo=prisma&logoColor=white)
-![DaisyUI](https://img.shields.io/badge/DAISYUI-5A0FC8?style=for-the-badge)
-![Supabase](https://img.shields.io/badge/SUPABASE-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
-
-</div>
-
----
+- ![Express](https://img.shields.io/badge/EXPRESS-000000?style=for-the-badge&logo=express&logoColor=white)
+- ![Prisma](https://img.shields.io/badge/PRISMA-2D3748?style=for-the-badge&logo=prisma&logoColor=white)
+- ![DaisyUI](https://img.shields.io/badge/DAISYUI-5A0FC8?style=for-the-badge)
+- ![Supabase](https://img.shields.io/badge/SUPABASE-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
 
