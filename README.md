@@ -25,17 +25,17 @@
 ---
 
 ### 📚 What i learned
-2. Express
+1. Express
    - It enhances my express skills more
    - Helps me to understand more about backend.
 2. Passportjs
    - Helps me to understand session authentication
    - Learned the use of passport-local strategy.
-4. Prisma
+3. Prisma
    - This project allow me to explore the beauty of prisma.
    - It ease the complex sql query
    - With the good docs helps me a lot understand what going on
-5. Supabase
+4. Supabase
    - It introduces me to cloud storage.
    - Allow me to understand advantages of having a cloud storage.
    - Helps me to strugle and learn on different problems that i never encounter before
