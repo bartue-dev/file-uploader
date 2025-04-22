@@ -7,7 +7,6 @@
     My-Drive allows users to upload files into nested folders, which are directly stored in the cloud via Supabase. 
     Users can also download their uploaded files and copy shareable links.
     <br /><br />
-    <a href="https://github.com/bartue-dev/file-uploader/blob/main/README.md"><strong>Explore the docs »</strong></a>
     <br />
     <a href="https://file-uploader-production-0f9c.up.railway.app/">View Demo</a>
   </p>
