@@ -8,7 +8,7 @@
     Users can also download their uploaded files and copy shareable links.
     <br /><br />
     <br />
-    <a href="https://file-uploader-production-0f9c.up.railway.app/">View Demo</a>
+    <a href="https://file-uploader-eb1k.onrender.com/">View Demo</a>
   </p>
 </div>
 
