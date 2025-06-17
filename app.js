@@ -42,6 +42,7 @@ app.use(session({
 
 //invoke passport session for login persistent
 app.use(passport.passportSession);
+
 //body parser
 app.use(express.urlencoded({ extended: true }));
 
